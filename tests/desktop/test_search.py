@@ -30,8 +30,8 @@ class TestSearch:
         # On the first page, "<<" and "previous" are not active, but "next" and ">>" are active.
         assert search_page.paginator.is_prev_page_disabled
         assert search_page.paginator.is_first_page_disabled
-        assert not search_page.paginator.is_next_page_disabled
-        assert not search_page.paginator.is_last_page_disabled
+        assert search_page.paginator.is_next_page_disabled is False
+        assert search_page.paginator.is_last_page_disabled is False
         assert search_page.paginator.page_number == expected_page
 
         # Move forward one page by clicking next, all buttons should be active.
@@ -39,10 +39,10 @@ class TestSearch:
 
         expected_page += 1
 
-        assert not search_page.paginator.is_prev_page_disabled
-        assert not search_page.paginator.is_first_page_disabled
-        assert not search_page.paginator.is_next_page_disabled
-        assert not search_page.paginator.is_last_page_disabled
+        assert search_page.paginator.is_prev_page_disabled is False
+        assert search_page.paginator.is_first_page_disabled is False
+        assert search_page.paginator.is_next_page_disabled is False
+        assert search_page.paginator.is_last_page_disabled is False
         assert search_page.paginator.page_number == expected_page
 
         # Click ">>" to go to last page. "<<" and "previous" are active, but "next" and ">>" are not.
@@ -50,8 +50,8 @@ class TestSearch:
 
         expected_page = search_page.paginator.total_page_number
 
-        assert not search_page.paginator.is_prev_page_disabled
-        assert not search_page.paginator.is_first_page_disabled
+        assert search_page.paginator.is_prev_page_disabled is False
+        assert search_page.paginator.is_first_page_disabled is False
         assert search_page.paginator.is_next_page_disabled
         assert search_page.paginator.is_last_page_disabled
         assert search_page.paginator.page_number == expected_page
@@ -61,10 +61,10 @@ class TestSearch:
 
         expected_page -= 1
 
-        assert not search_page.paginator.is_prev_page_disabled
-        assert not search_page.paginator.is_first_page_disabled
-        assert not search_page.paginator.is_next_page_disabled
-        assert not search_page.paginator.is_last_page_disabled
+        assert search_page.paginator.is_prev_page_disabled is False
+        assert search_page.paginator.is_first_page_disabled is False
+        assert search_page.paginator.is_next_page_disabled is False
+        assert search_page.paginator.is_last_page_disabled is False
         assert search_page.paginator.page_number == expected_page
 
     @pytest.mark.nondestructive
@@ -78,7 +78,7 @@ class TestSearch:
     def test_that_various_search_terms_return_results(self, mozwebqa, term):
         search_page = Home(mozwebqa).search_for(term)
 
-        assert not search_page.is_no_results_present
+        assert search_page.is_no_results_present is False
         assert search_page.result_count > 0
 
     @pytest.mark.nondestructive
@@ -104,7 +104,7 @@ class TestSearch:
         home_page = Home(mozwebqa)
         search_term = 'cool'
         search_page = home_page.search_for(search_term)
-        assert not search_page.is_no_results_present
+        assert search_page.is_no_results_present is False
 
         for i in range(0, len(search_page.results)):
             try:
