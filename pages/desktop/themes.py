@@ -102,7 +102,7 @@ class ThemesDetail(Base):
     def is_the_current_page(self):
         # This overrides the method in the Page super class.
         actual_page_title = self.page_title
-        assert re.match(self._page_title_regex, actual_page_title), 'Expected the current page to be the themes detail page.\n Actual title: %s' % actual_page_title
+        assert re.match(self._page_title_regex, actual_page_title) is not None, 'Expected the current page to be the themes detail page.\n Actual title: %s' % actual_page_title
         return True
 
     @property
