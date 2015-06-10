@@ -8,8 +8,6 @@
 import re
 import pytest
 
-from unittestzero import Assert
-
 from pages.desktop.details import Details
 from pages.desktop.extensions import ExtensionsHome
 from pages.desktop.home import Home
@@ -21,16 +19,16 @@ class TestDetails:
     @pytest.mark.nondestructive
     def test_that_register_login_link_is_present_in_addon_details_page(self, mozwebqa):
         details_page = Details(mozwebqa, "Firebug")
-        Assert.true(details_page.header.is_register_link_visible, "Register link is not visible")
-        Assert.true(details_page.header.is_login_link_visible, "Login links is not visible")
+        assert details_page.header.is_register_link_visible, "Register link is not visible"
+        assert details_page.header.is_login_link_visible, "Login links is not visible"
 
     @pytest.mark.action_chains
     @pytest.mark.nondestructive
     def test_that_dropdown_menu_is_present_after_click_on_other_apps(self, mozwebqa):
         details_page = Details(mozwebqa, "Firebug")
-        Assert.equal(details_page.header.menu_name, "Other Applications")
+        assert details_page.header.menu_name, "Other Applications"
         details_page.header.hover_over_other_apps_menu()
-        Assert.true(details_page.header.is_other_apps_dropdown_menu_visible)
+        assert details_page.header.is_other_apps_dropdown_menu_visible
 
     @pytest.mark.nondestructive
     def test_that_addon_name_is_displayed(self, mozwebqa):
@@ -47,21 +45,21 @@ class TestDetails:
     @pytest.mark.nondestructive
     def test_that_about_this_addon_is_displayed(self, mozwebqa):
         details_page = Details(mozwebqa, "Firebug")
-        Assert.equal(details_page.about_addon, "About this Add-on")
+        assert details_page.about_addon, "About this Add-on"
         Assert.not_none(re.match('(\w+\s*){3,}', details_page.description))
 
     @pytest.mark.action_chains
     @pytest.mark.nondestructive
     def test_that_version_information_is_displayed(self, mozwebqa):
         details_page = Details(mozwebqa, 'Firebug')
-        Assert.equal(details_page.version_information_heading, 'Version Information')
+        assert details_page.version_information_heading == 'Version Information'
 
         details_page.expand_version_information()
-        Assert.true(details_page.is_version_information_section_expanded)
-        Assert.true(details_page.is_source_code_license_information_visible)
-        Assert.true(details_page.is_whats_this_license_visible)
-        Assert.true(details_page.is_view_the_source_link_visible)
-        Assert.true(details_page.is_complete_version_history_visible)
+        assert details_page.is_version_information_section_expanded
+        assert details_page.is_source_code_license_information_visible
+        assert details_page.is_whats_this_license_visible
+        assert details_page.is_view_the_source_link_visible
+        assert details_page.is_complete_version_history_visible
         Assert.true(details_page.is_version_information_install_button_visible)
         # check that the release number matches the version number at the top of the page
         Assert.equal('Version %s' % details_page.version_number, details_page.release_version)
