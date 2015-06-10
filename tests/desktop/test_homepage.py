@@ -123,7 +123,7 @@ class TestHome:
             menu_item.hover()
             assert menu_item.is_menu_dropdown_visible
             home_page.hover_over_addons_home_title()
-            assert not menu_item.is_menu_dropdown_visible
+            assert menu_item.is_menu_dropdown_visible is False
 
     @pytest.mark.smoke
     @pytest.mark.nondestructive
@@ -182,11 +182,11 @@ class TestHome:
             # 'more' navigation_menu has no featured items so we have a different assertion
             if actual_menu.name == u"MORE\u2026":
                 # loop through each of the items in the top level menu and check is_featured property
-                [assert not (item.is_featured) for item in actual_menu.items]
+                [assert (item.is_featured) is False for item in actual_menu.items]
             else:
                 # first 3 are featured, the others are not
                 [assert (item.is_featured) for item in actual_menu.items[:3]]
-                [assert not (item.is_featured) for item in actual_menu.items[3:]]
+                [assert (item.is_featured) is False for item in actual_menu.items[3:]]
 
     @pytest.mark.nondestructive
     def test_that_checks_the_up_and_coming_extensions_island(self, mozwebqa):
