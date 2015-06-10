@@ -31,7 +31,7 @@ class TestCompleteThemes:
         assert len(addons) == len(addons_set), 'There are duplicates in the names'
         addons_orig = addons
         addons.sort()
-        [assert (addons_orig[i], addons[i]) for i in xrange(len(addons))]
+        [assert (addons_orig[i] == addons[i]) for i in xrange(len(addons))]
 
     @pytest.mark.native
     @pytest.mark.nondestructive
