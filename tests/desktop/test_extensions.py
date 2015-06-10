@@ -138,7 +138,7 @@ class TestExtensions:
 
         if len(featured_extensions_page.extensions) < 20:
             # Assert that the paginator is not present if fewer than 20 extensions are displayed
-            assert not featured_extensions_page.is_paginator_present
+            assert featured_extensions_page.is_paginator_present is False
         else:
             # Assert that the paginator is present if 20 extensions are displayed
             assert featured_extensions_page.is_paginator_present
@@ -147,14 +147,14 @@ class TestExtensions:
 
             featured_extensions_page.paginator.click_next_page()
 
-            assert not featured_extensions_page.paginator.is_prev_page_disabled
-            assert not featured_extensions_page.paginator.is_next_page_disabled
+            assert featured_extensions_page.paginator.is_prev_page_disabled is False
+            assert featured_extensions_page.paginator.is_next_page_disabled is False
 
             featured_extensions_page.paginator.click_prev_page()
 
             assert len(featured_extensions_page.extensions) == 20
             assert featured_extensions_page.paginator.is_prev_page_disabled
-            assert not featured_extensions_page.paginator.is_next_page_disabled
+            assert featured_extensions_page.paginator.is_next_page_disabled is False
 
     @pytest.mark.native
     @pytest.mark.nondestructive
