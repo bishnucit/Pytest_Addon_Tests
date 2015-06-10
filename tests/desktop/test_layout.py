@@ -20,7 +20,7 @@ class TestAmoLayout:
         home_page.header.click_other_application(app_under_test)
         assert app_under_test.lower() in home_page.get_url_current_page()
 
-        assert not home_page.header.is_other_application_visible(app_under_test)
+        assert home_page.header.is_other_application_visible(app_under_test) is False
 
     @pytest.mark.nondestructive
     def test_that_checks_amo_logo_text_layout_and_title(self, mozwebqa):
