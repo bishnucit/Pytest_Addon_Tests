@@ -32,7 +32,7 @@ class TestReviews:
         # that the page number decreases and that the next link is visible
         page_number = view_reviews.paginator.page_number
         view_reviews.paginator.click_prev_page()
-        assert not view_reviews.paginator.is_next_page_disabled
+        assert view_reviews.paginator.is_next_page_disabled is False
         assert len(view_reviews.reviews) == 20
         assert view_reviews.paginator.page_number == page_number - 1
 
@@ -44,7 +44,7 @@ class TestReviews:
         # that the page number increases and that the prev link is visible
         page_number = view_reviews.paginator.page_number
         view_reviews.paginator.click_next_page()
-        assert not view_reviews.paginator.is_prev_page_disabled
+        assert view_reviews.paginator.is_prev_page_disabled is False
         assert len(view_reviews.reviews) == 20
         assert view_reviews.paginator.page_number == page_number + 1
 
@@ -87,4 +87,4 @@ class TestReviews:
         review_page = details_page.click_all_reviews_link()
 
         for review in review_page.reviews:
-            assert not body in review.text
+            assert body in review.text is False
