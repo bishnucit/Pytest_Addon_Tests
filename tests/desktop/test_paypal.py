@@ -40,7 +40,7 @@ class TestPaypal:
     def test_that_user_can_make_a_contribution_without_logging_into_amo(self, mozwebqa, paypal_user):
         """Test that checks if the user is able to make a contribution without logging in to AMO."""
         addon_page = Details(mozwebqa, self.addon_name)
-        assert not addon_page.header.is_user_logged_in
+        assert addon_page.header.is_user_logged_in is False
 
         contribution_snippet = addon_page.click_contribute_button()
         paypal_frame = contribution_snippet.click_make_contribution_button()
@@ -57,7 +57,7 @@ class TestPaypal:
     @pytest.mark.nondestructive
     def test_that_make_contribution_button_is_clickable_and_loads_paypal_frame_while_user_is_logged_out(self, mozwebqa):
         addon_page = Details(mozwebqa, self.addon_name)
-        assert not addon_page.header.is_user_logged_in
+        assert addon_page.header.is_user_logged_in is False
 
         contribution_snippet = addon_page.click_contribute_button()
 
