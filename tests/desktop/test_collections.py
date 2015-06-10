@@ -60,7 +60,7 @@ class TestCollections:
         assert 'Collections by %s :: Add-ons for Firefox' %
                      existing_user['name'] == my_collections_page.page_title
         assert 'Collections by %s' % existing_user['name'] ==
-                     my_collections_page.my_collections_header_text)
+                     my_collections_page.my_collections_header_text
 
     @pytest.mark.native
     @pytest.mark.login
