@@ -126,8 +126,7 @@ class ThemesBrowse(Base):
     @property
     def is_the_current_page(self):
         # This overrides the method in the Page super class.
-        assert (self.is_element_present(*self._themes_grid_locator),
-                    'Expected the current page to be the themes browse page.')
+        assert self.is_element_present(*self._themes_grid_locator),'Expected the current page to be the themes browse page.'
         return True
 
     @property
