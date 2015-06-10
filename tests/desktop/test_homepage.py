@@ -271,7 +271,7 @@ class TestHome:
         assert 'Thunderbird Add-ons' in home_page.amo_logo_title
 
         # Android
-        Assert.true(home_page.header.is_other_application_visible("Android"))
+        assert home_page.header.is_other_application_visible("Android")
         home_page.header.click_other_application("Android")
         current_page_url = home_page.get_url_current_page()
         assert current_page_url.endswith("/android/")
