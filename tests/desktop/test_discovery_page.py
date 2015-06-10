@@ -82,7 +82,7 @@ class TestDiscoveryPane:
         discovery_pane = DiscoveryPane(mozwebqa, self.basepath(mozwebqa))
         home_page = discovery_pane.click_logout()
         assert home_page.is_the_current_page
-        assert not home_page.header.is_user_logged_in
+        assert home_page.header.is_user_logged_in is False
 
     @pytest.mark.smoke
     @pytest.mark.nondestructive
