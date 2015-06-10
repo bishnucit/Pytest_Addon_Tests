@@ -23,7 +23,7 @@ class TestAccounts:
         assert home_page.header.is_user_logged_in
 
         home_page.header.click_logout()
-        assert not home_page.header.is_user_logged_in
+        assert home_page.header.is_user_logged_in is False
 
     @pytest.mark.native
     @pytest.mark.nondestructive
